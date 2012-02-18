@@ -1,3 +1,4 @@
+%bcond_without bootstrap
 %global packname  Hmisc
 %global rlibdir  %{_libdir}/R/library
 
@@ -9,14 +10,18 @@ Group:            Sciences/Mathematics
 License:          GPL (>= 2)
 URL:              http://cran.r-project.org/web/packages/%{packname}/index.html
 Source0:          http://cran.r-project.org/src/contrib/%{packname}_3.9-2.tar.gz
-
 Requires:         R-methods R-survival 
 Requires:         R-lattice R-cluster R-survival 
-Requires:         R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-TeachingDemos R-rms R-cluster R-mice R-subselect R-tree 
+%if %{with bootstrap}
+%else
+Requires:         R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-cluster R-subselect R-tree 
+%endif
 BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods R-survival
 BuildRequires:    R-lattice R-cluster R-survival 
-BuildRequires:    R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-TeachingDemos R-rms R-cluster R-mice R-subselect R-tree 
-%rename R-cran-Hmisc
+%if %{with bootstrap}
+%else
+BuildRequires:    R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-cluster R-subselect R-tree 
+%endif
 
 %description
 The Hmisc library contains many functions useful for data analysis,
@@ -37,17 +42,23 @@ mkdir -p %{buildroot}%{rlibdir}
 test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -f %{buildroot}%{rlibdir}/R.css
 
+%if %{without bootstrap}
 %check
 %{_bindir}/R CMD check %{packname}
+%endif
 
 %files
 %dir %{rlibdir}/%{packname}
-%doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
+%doc %{rlibdir}/%{packname}/todo
+%doc %{rlibdir}/%{packname}/CHANGELOG
 %doc %{rlibdir}/%{packname}/DESCRIPTION
 %doc %{rlibdir}/%{packname}/NEWS
+%doc %{rlibdir}/%{packname}/THANKS
+%doc %{rlibdir}/%{packname}/WISHLIST
 %{rlibdir}/%{packname}/INDEX
 %{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}/libs

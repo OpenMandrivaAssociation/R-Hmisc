@@ -1,26 +1,23 @@
-%bcond_without bootstrap
+%bcond_with bootstrap
 %global packname  Hmisc
 %global rlibdir  %{_libdir}/R/library
 
 Name:             R-%{packname}
 Version:          3.9_2
-Release:          1
+Release:          2
 Summary:          Harrell Miscellaneous
 Group:            Sciences/Mathematics
 License:          GPL (>= 2)
 URL:              http://cran.r-project.org/web/packages/%{packname}/index.html
 Source0:          http://cran.r-project.org/src/contrib/%{packname}_3.9-2.tar.gz
-Requires:         R-methods R-survival 
-Requires:         R-lattice R-cluster R-survival 
-%if %{with bootstrap}
-%else
-Requires:         R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-cluster R-subselect R-tree 
+Requires:         R-methods R-survival R-lattice R-cluster
+%if %{without bootstrap}
+Requires:         R-grid R-nnet R-foreign R-chron R-acepack R-subselect R-tree
 %endif
-BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods R-survival
-BuildRequires:    R-lattice R-cluster R-survival 
-%if %{with bootstrap}
-%else
-BuildRequires:    R-lattice R-grid R-nnet R-foreign R-chron R-acepack R-cluster R-subselect R-tree 
+BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods
+BuildRequires:    R-survival R-lattice R-cluster
+%if %{without bootstrap}
+BuildRequires:    R-grid R-nnet R-foreign R-chron R-acepack R-subselect R-tree
 %endif
 
 %description

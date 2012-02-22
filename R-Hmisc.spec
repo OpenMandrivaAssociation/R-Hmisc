@@ -13,11 +13,13 @@ Source0:          http://cran.r-project.org/src/contrib/%{packname}_3.9-2.tar.gz
 Requires:         R-methods R-survival R-lattice R-cluster
 %if %{without bootstrap}
 Requires:         R-grid R-nnet R-foreign R-chron R-acepack R-subselect R-tree
+Requires:         R-TeachingDemos R-rms R-mice
 %endif
 BuildRequires:    R-devel Rmath-devel texlive-collection-latex R-methods
 BuildRequires:    R-survival R-lattice R-cluster
 %if %{without bootstrap}
 BuildRequires:    R-grid R-nnet R-foreign R-chron R-acepack R-subselect R-tree
+BuildRequires:    R-TeachingDemos R-rms R-mice
 %endif
 
 %description

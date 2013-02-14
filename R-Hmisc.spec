@@ -3,13 +3,13 @@
 %global rlibdir  %{_libdir}/R/library
 
 Name:             R-%{packname}
-Version:          3.9_2
-Release:          2
+Version:          3.10.1
+Release:          1
 Summary:          Harrell Miscellaneous
 Group:            Sciences/Mathematics
 License:          GPL (>= 2)
 URL:              http://cran.r-project.org/web/packages/%{packname}/index.html
-Source0:          http://cran.r-project.org/src/contrib/%{packname}_3.9-2.tar.gz
+Source0:          http://cran.r-project.org/src/contrib/Hmisc_3.10-1.tar.gz
 Requires:         R-methods R-survival R-lattice R-cluster
 %if %{without bootstrap}
 Requires:         R-grid R-nnet R-foreign R-chron R-acepack R-subselect R-tree

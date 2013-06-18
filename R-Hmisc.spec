@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          3.10.1
-Release:          1
+Release:          2
 Summary:          Harrell Miscellaneous
 Group:            Sciences/Mathematics
 License:          GPL (>= 2)
